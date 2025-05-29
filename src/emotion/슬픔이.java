@@ -1,9 +1,8 @@
 package emotion;
 public class 슬픔이 extends Emotion {
 
-	public 슬픔이(String name, int hp, int power, String img1, String img2) {
-		super(name, hp, power, img1, img2);
-		// TODO Auto-generated constructor stub
+	public 슬픔이() {
+
 	}
 
 	public void attack(Emotion target){

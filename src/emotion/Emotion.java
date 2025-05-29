@@ -9,6 +9,15 @@ public abstract class Emotion implements Attackable {
     public String name;
     private String imgFile1;
     private String imgFile2;
+    
+    public void debuff() {
+    	System.out.println(this.name+"이 디버프를 받습니다.");
+    }
+    
+    public void buff() {
+    	System.out.println(this.name+"이 버프를 받습니다.");
+    	
+    }
 
     public void show_view(){
     	System.out.println("====================================");
@@ -16,14 +25,7 @@ public abstract class Emotion implements Attackable {
     	System.out.println("====================================");
     }
     public abstract void attack(Emotion target); 
-    // 생성자
-    public Emotion(String name, int hp, int power, String imgFile1, String imgFile2) {
-    	this.name = name;
-    	setHp(hp);
-    	setPower(power);
-    	this.imgFile1 = imgFile1;
-    	this.imgFile2 = imgFile2;
-    }
+   
     //Getter,Setter
     public Weapon getWeapon(){
         return weapon;

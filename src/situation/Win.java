@@ -1,8 +1,7 @@
+//하키시합 이긴 클래스
 package situation;
 
-import emotion.기쁨이;
-import emotion.까칠이;
-import emotion.버럭이;
+import emotion.*;
 
 public class Win extends Situation{
 

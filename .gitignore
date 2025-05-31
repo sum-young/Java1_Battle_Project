@@ -37,11 +37,12 @@ Desktop.ini
 # === IDEs ===
 .idea/            # IntelliJ
 *.iml
+*.xml
 .vscode/          # VS Code
-
+s
 # === Maven ===
 .mvn/
-target/
+target/s
 pom.xml.tag
 pom.xml.releaseBackup
 pom.xml.versionsBackup

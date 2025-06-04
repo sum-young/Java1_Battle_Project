@@ -15,10 +15,9 @@ public class 기쁨이 extends Emotion {
     	this.image2 = "/images/기쁨이 사망.png"; 
 	}
 
-//	public void attack(Emotion target){
-//		int power = super.getAttack_power() + super.getWeapon().getPower();
-//		target.setCurr_hp(target.getCurr_hp()-power);
-//		System.out.println(">기쁨이가 비눗방울을 날립니다! 보글보글보글...");
-//    }
+	public void attack(Emotion target){
+		super.attack(target);
+		System.out.println(">기쁨이가 비눗방울을 날립니다! 보글보글보글...");
+    }
 
 }

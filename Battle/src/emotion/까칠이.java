@@ -15,10 +15,9 @@ public class 까칠이 extends Emotion {
 		this.image2 = "/images/까칠이 사망.png"; 
 	}
 
-//	public void attack(Emotion target){
-//		int power = super.getPower() + super.getWeapon().getPower();
-//		target.setHp(target.getHp()-power);
-//		System.out.println(">까칠이가 눈빛레이저를 발사했습니다! 위이이잉");
-//    }
+	public void attack(Emotion target){
+		super.attack(target);
+		System.out.println(">까칠이가 눈빛레이저를 발사했습니다! 위이이잉");
+    }
 
 }

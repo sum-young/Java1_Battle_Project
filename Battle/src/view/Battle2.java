@@ -66,7 +66,46 @@ public class Battle2 extends JFrame {
 	 * Create the frame.
 	 */
 
+	public void kill(int n) {
+		switch(n) {
+		case 0:
+			Img1.setIcon(new ImageIcon(Battle1.class.getResource(Main.player_list.get(1).get(0).getImage2())));
+			attackBut1.setEnabled(false);
+			healBut1.setEnabled(false);
+			wAttackBut1.setEnabled(false);
+			p2_e1_hpbar.setVisible(false);
+			return;
+		case 1:
+			Img2.setIcon(new ImageIcon(Battle1.class.getResource(Main.player_list.get(1).get(1).getImage2())));
+			attackBut2.setEnabled(false);
+			healBut2.setEnabled(false);
+			wAttackBut2.setEnabled(false);
+			p2_e2_hpbar.setVisible(false);
+		case 2:
+			Img3.setIcon(new ImageIcon(Battle1.class.getResource(Main.player_list.get(1).get(2).getImage2())));
+			attackBut3.setEnabled(false);
+			healBut3.setEnabled(false);
+			wAttackBut3.setEnabled(false);
+			p2_e3_hpbar.setVisible(false);
+			
+		}
+	}
+	
 	public void setHp(int n) {
+		if(Main.player_list.get(0).get(n).getCurr_hp() <=0){
+			switch(n) {
+			case 0:
+				this.kill(n);
+				break;
+			case 1:
+				this.kill(n);;
+				break;
+			case 2:
+				this.kill(n);;
+				break;
+			}
+		}
+		
 		hp_bar[n].setValue(Main.player_list.get(1).get(n).getCurr_hp());
 	}
 

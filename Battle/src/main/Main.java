@@ -1,6 +1,7 @@
 package main;
 
 import emotion.*;
+import java.time.LocalTime;
 import java.util.*;
 //import view.selectE1;
 import weapon.Weapon;
@@ -24,6 +25,7 @@ public class Main {
 	
 	public static void main(String[] args) {
 		
+		LocalTime now = LocalTime.now();
 		
 //		// 테스트용 임시 감정 고르기
 //		for(int i=0;i<3;i++) {
@@ -37,8 +39,8 @@ public class Main {
 		
 		// 상황 랜덤으로 주어지게 하기
 		Situation s = new Situation();
-		int situation_random = (int)Math.random()*100%2;
 		
+		int situation_random = ((int)(Math.random())*100+now.getSecond()) % 4;
 		switch(situation_random) {
 		case 0:
 			s = new Monday();
@@ -111,28 +113,43 @@ public class Main {
 			
 			switch(select){
 			case 1:
-				System.out.printf("Player%d 버튼 눌림\n", player+1);
 				player_list.get(player).get(emotion).attack(player_list.get(target_player).get(rand));
-				System.out.println(rand);
 				System.out.println(player_list.get(1).get(rand).getCurr_hp());
+				
+				switch(player){
+				case 0:
+					battle2.setHp(rand);
+					return;
+				case 1:
+					battle1.setHp(rand);
+					return;
+				}
 				break;
 			case 2:
 				player_list.get(player).get(emotion).heal();
+				
+				switch(player){
+				case 0:
+					battle1.setHp(emotion);
+					return;
+				case 1:
+					battle2.setHp(emotion);
+					return;
+				}
 				break;
 			case 3:
 				player_list.get(player).get(emotion).weaponAttack(player_list.get(1).get(rand));
+				switch(player){
+				case 0:
+					battle2.setHp(rand);
+					return;
+				case 1:
+					battle1.setHp(rand);
+					return;
+				}
 				break;
 			}
 			
-			switch(player){
-			case 0:
-				battle2.setHp(rand);
-				return;
-			case 1:
-				battle1.setHp(rand);
-				return;
-				}
-			
-		}
+	}
 
 }

@@ -14,8 +14,13 @@ public class 버럭이 extends Emotion {
 		this.image1 = "/images/버럭이.png"; 
 		this.image2 = "/images/버럭이 사망.png"; 
 	}
+	
+	public void attack(Emotion target) {
+		super.attack(target);
+		System.out.println("버럭이가 분노 감정 구슬을 던집니다! :(");
+	}
 
-	public void attack(Emotion target){
+	public void weaponAttack(Emotion target){
 		super.attack(target);
 		System.out.println(">버럭이가 망치를 휘두룹니다! 쾅쾅!!");
     }

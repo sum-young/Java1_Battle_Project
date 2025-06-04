@@ -7,7 +7,7 @@ import emotion.버럭이;
 public class Win extends Situation{
 
 	public Win() {
-		this.situation_context = "오늘은 월요일입니다.";
+		this.situation_context = "오늘은 하키 시합에서 이긴 날입니다.";
 		this.buff_target.add(new 기쁨이());
 	}
 }

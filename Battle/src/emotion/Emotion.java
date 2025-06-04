@@ -27,15 +27,20 @@ public abstract class Emotion implements Attackable, Healable, Buffable, Debuffa
     }
     
     public void weaponAttack(Emotion target){
+    	System.out.println("무기로 공격");
 		target.setCurr_hp(target.getCurr_hp() - this.weapon.getPower());
 	}
     
     public void heal() {
 		int random_num = (int)(Math.random() * 100 % 2); //2의 배수면 힐 성공, 아니면 실패
+		
 		if(random_num == 0) {
 			this.curr_hp += heal_power < max_hp ? heal_power : max_hp;
+			System.out.println("힐 됨");
+			return;
 		}
 		else {
+			System.out.println("힐 실패");
 			return;
 		}
 	}

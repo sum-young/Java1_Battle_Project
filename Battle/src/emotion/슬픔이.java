@@ -15,10 +15,9 @@ public class 슬픔이 extends Emotion {
 		this.image2 = "/images/슬픔이 사망.png"; 
 	}
 
-//	public void attack(Emotion target){
-//		int power = super.getPower() + super.getWeapon().getPower();
-//		target.setHp(target.getHp()-power);
-//		System.out.println(">슬픔이가 눈물을 흘립니다ㅠㅠㅠ 너무 슬펴져서 힘이 깎입니다:(");
-//    }
+	public void attack(Emotion target){
+		super.attack(target);
+		System.out.println(">슬픔이가 눈물을 흘립니다ㅠㅠㅠ 너무 슬펴져서 힘이 깎입니다:(");
+    }
 
 }

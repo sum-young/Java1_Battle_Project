@@ -2,9 +2,12 @@ package main;
 
 import emotion.*;
 import java.util.*;
-import view.selectE1;
+//import view.selectE1;
 import weapon.Weapon;
 import situation.*;
+import view.Battle1;
+import view.Battle2;
+import view.choosePlayer1;
 
 
 public class Main {	
@@ -19,20 +22,18 @@ public class Main {
 	static Scanner sc = new Scanner(System.in);
 	
 	
-//	public static void winGame() {
-//		
-//		new selectE1().setVisible(true);
-//	}
-
-	
 	public static void main(String[] args) {
 		
-		// 테스트용 임시 감정 고르기
-		for(int i=0;i<3;i++) {
-			System.out.println("감정 3개 고르기");
-			int n = sc.nextInt();
-			setPlayers(n, 1);
-		}
+		
+//		// 테스트용 임시 감정 고르기
+//		for(int i=0;i<3;i++) {
+//			System.out.println("감정 3개 고르기");
+//			int n = sc.nextInt();
+//			setPlayers(n, 1);
+//		}
+		
+		// 선택 창 띄우기
+		new choosePlayer1().setVisible(true);
 		
 		// 상황 랜덤으로 주어지게 하기
 		Situation s = new Situation();
@@ -90,6 +91,35 @@ public class Main {
 				player_list.get(player).add(new 소심이());
 				return;
 			}
+			
+		}
+		
+		public static void select_action(int player, int select, int emotion){
+			Battle1 a = new Battle1();
+			Battle2 b = new Battle2();
+			player--;
+			int rand = (int)(Math.random()*100)%3;
+			switch(select){
+			case 1:
+				System.out.printf("Player%d 버튼 눌림\n", player+1);
+				player_list.get(player).get(emotion).attack(player_list.get(1).get(rand));
+				break;
+			case 2:
+				player_list.get(player).get(emotion).heal();
+				break;
+			case 3:
+				player_list.get(player).get(emotion).weaponAttack(player_list.get(1).get(rand));
+				break;
+			}
+			
+			switch(player){
+			case 0:
+				a.setHp(rand);
+				return;
+			case 1:
+				b.setHp(rand);
+				return;
+				}
 			
 		}
 

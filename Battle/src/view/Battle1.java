@@ -18,6 +18,15 @@ import java.awt.event.ActionListener;
 import java.awt.Color;
 
 public class Battle1 extends JFrame {
+	
+	private static Battle1 instance;
+	
+	public static Battle1 getInstance() {
+		if(instance == null) {
+			instance = new Battle1();
+		}
+		return instance;
+	}
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -58,13 +67,15 @@ public class Battle1 extends JFrame {
 	 */
 
 	public void setHp(int n){
-		System.out.println("setHp 실행됐다");
-		hp_bar[n].setValue(Main.player_list.get(1).get(n).getCurr_hp());
+		System.out.println("1111setHp 실행됐다");
+		hp_bar[n].setValue(Main.player_list.get(0).get(n).getCurr_hp());
+		hp_bar[n].repaint();
 	}
+	
 		
 	public Battle1() {
 		
-		
+		System.out.println("Battle1 생성자 실행됨!");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 822, 519);
 		contentPane = new JPanel();
@@ -95,6 +106,7 @@ public class Battle1 extends JFrame {
 		p1_e1_hpbar.setBounds(20, 28, 219, 26);
 		contentPane.add(p1_e1_hpbar);
 		p1_e1_hpbar.setMaximum(Main.player_list.get(0).get(0).getMax_hp());
+		p1_e1_hpbar.setValue(Main.player_list.get(0).get(0).getMax_hp());
 		
 		p1_e2_hpbar = new JProgressBar();
 		p1_e2_hpbar.setBackground(Color.LIGHT_GRAY);
@@ -102,6 +114,7 @@ public class Battle1 extends JFrame {
 		p1_e2_hpbar.setBounds(283, 28, 219, 26);
 		contentPane.add(p1_e2_hpbar);
 		p1_e2_hpbar.setMaximum(Main.player_list.get(0).get(1).getMax_hp());
+		p1_e2_hpbar.setValue(Main.player_list.get(0).get(1).getMax_hp());
 		
 		p1_e3_hpbar = new JProgressBar();
 		p1_e3_hpbar.setBackground(Color.LIGHT_GRAY);
@@ -109,6 +122,7 @@ public class Battle1 extends JFrame {
 		p1_e3_hpbar.setBounds(552, 28, 219, 26);
 		contentPane.add(p1_e3_hpbar);
 		p1_e3_hpbar.setMaximum(Main.player_list.get(0).get(2).getMax_hp());
+		p1_e3_hpbar.setValue(Main.player_list.get(0).get(2).getMax_hp());
 		
 		attackBut1 = new JButton("공격하기");
 		attackBut1.addActionListener(new ActionListener() {

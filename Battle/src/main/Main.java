@@ -73,6 +73,7 @@ public class Main {
 		
 		//setPlayers: 플레이어 배열에 선택한 감정들 추가해주기 (버튼 클릭 -> 해당 번호 인자로 전달 -> switch문)
 		public static void setPlayers(int n, int player) {
+			
 			player--;
 			switch(n) {
 			case 1:
@@ -95,14 +96,25 @@ public class Main {
 		}
 		
 		public static void select_action(int player, int select, int emotion){
-			Battle1 a = new Battle1();
-			Battle2 b = new Battle2();
+			Battle1 battle1 = Battle1.getInstance();
+			Battle2 battle2 = Battle2.getInstance();
 			player--;
+			int target_player;
+			
+			if(player == 0) {
+				target_player = 1;
+			}
+			else {
+				target_player=0;
+			}
 			int rand = (int)(Math.random()*100)%3;
+			
 			switch(select){
 			case 1:
 				System.out.printf("Player%d 버튼 눌림\n", player+1);
-				player_list.get(player).get(emotion).attack(player_list.get(1).get(rand));
+				player_list.get(player).get(emotion).attack(player_list.get(target_player).get(rand));
+				System.out.println(rand);
+				System.out.println(player_list.get(1).get(rand).getCurr_hp());
 				break;
 			case 2:
 				player_list.get(player).get(emotion).heal();
@@ -114,10 +126,10 @@ public class Main {
 			
 			switch(player){
 			case 0:
-				a.setHp(rand);
+				battle2.setHp(rand);
 				return;
 			case 1:
-				b.setHp(rand);
+				battle1.setHp(rand);
 				return;
 				}
 			

@@ -15,6 +15,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class choosePlayer2 extends JFrame {
+	
+	
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -29,7 +31,7 @@ public class choosePlayer2 extends JFrame {
 	private JLabel fearImg;
 	private JButton fearSelectButton;
 
-	public int cnt=0;
+	public int cnt2=0;
 	/**
 	 * Launch the application.
 	 */
@@ -53,11 +55,13 @@ public class choosePlayer2 extends JFrame {
 	
 	public void handleSelect(int n) {
 		Main.setPlayers(n, 2);
-		cnt++;
+		cnt2++;
 		
-		if(cnt==3) {
-			new Battle1().setVisible(true);
-			new Battle2().setVisible(true);
+		if(cnt2==3) {
+			Battle1 battle1 = Battle1.getInstance();
+			Battle2 battle2 = Battle2.getInstance();
+			battle1.setVisible(true);
+			battle2.setVisible(true);
 			
 			for(int i=0; i<Main.player_list.get(0).size(); i++){
 				System.out.println(Main.player_list.get(1).get(i).name);

@@ -1,19 +1,22 @@
 package main;
 
 import emotion.*;
-import java.time.LocalTime;
 import java.util.*;
 //import view.selectE1;
 import weapon.Weapon;
 import situation.*;
-import view.Battle1;
-import view.Battle2;
+import view.Battleview1;
+import view.Battleview2;
 import view.choosePlayer1;
 
 
 public class Main {	
 	//플레이어 벡터 Main 클래스의 전역변수로 선언. default라 다른 패키지에서 못쓰니까 get, set 메소드 만듦
 	public static Vector<Vector<Emotion>> player_list = new Vector<>();
+	
+	//살아있는 팀별 수
+	static public int alive_p1 =3;
+	static public int alive_p2 =3;
 	static {
 		for (int i = 0; i < 2; i++) {
 		    player_list.add(new Vector<>()); // 2개의 빈 벡터 추가
@@ -25,7 +28,6 @@ public class Main {
 	
 	public static void main(String[] args) {
 		
-		LocalTime now = LocalTime.now();
 		
 //		// 테스트용 임시 감정 고르기
 //		for(int i=0;i<3;i++) {
@@ -39,8 +41,8 @@ public class Main {
 		
 		// 상황 랜덤으로 주어지게 하기
 		Situation s = new Situation();
+		int situation_random = (int)Math.random()*100%4;
 		
-		int situation_random = ((int)(Math.random())*100+now.getSecond()) % 4;
 		switch(situation_random) {
 		case 0:
 			s = new Monday();
@@ -60,6 +62,7 @@ public class Main {
 		s.showSituation();
 		s.give_buff();
 		s.give_debuff();
+		
 		
 	}
 	
@@ -97,59 +100,45 @@ public class Main {
 			
 		}
 		
-		public static void select_action(int player, int select, int emotion){
-			Battle1 battle1 = Battle1.getInstance();
-			Battle2 battle2 = Battle2.getInstance();
-			player--;
+		//공격하기/힐하기/무기로 공격하기 버튼 누르면 여기서 어떤게 실행되는지 결정됨
+		//인자: 플레이어1/2인지, 눌려진 버튼의 종류(공격/힐/무기), 공격자(공격하는 감정)
+		public static void select_action(int player, int select, Emotion emotion){
+			
+			Battleview1 b1 = Battleview1.getInstance();
+			Battleview2 b2 = Battleview2.getInstance();
+			
+			//랜덤하게 상대 타겟 결정
 			int target_player;
+			int rand = (int)(Math.random()*100);
 			
 			if(player == 0) {
 				target_player = 1;
+				rand %= alive_p2;
 			}
 			else {
 				target_player=0;
+				rand %= alive_p1;
 			}
-			int rand = (int)(Math.random()*100)%3;
-			
+		
+			//공격 / 무기 공격 선택지에 따라 다르게 실행되게
 			switch(select){
 			case 1:
-				player_list.get(player).get(emotion).attack(player_list.get(target_player).get(rand));
-				System.out.println(player_list.get(1).get(rand).getCurr_hp());
-				
-				switch(player){
-				case 0:
-					battle2.setHp(rand);
-					return;
-				case 1:
-					battle1.setHp(rand);
-					return;
-				}
+				emotion.attack(player_list.get(target_player).get(rand));
 				break;
 			case 2:
-				player_list.get(player).get(emotion).heal();
-				
-				switch(player){
-				case 0:
-					battle1.setHp(emotion);
-					return;
-				case 1:
-					battle2.setHp(emotion);
-					return;
-				}
-				break;
-			case 3:
-				player_list.get(player).get(emotion).weaponAttack(player_list.get(1).get(rand));
-				switch(player){
-				case 0:
-					battle2.setHp(rand);
-					return;
-				case 1:
-					battle1.setHp(rand);
-					return;
-				}
-				break;
+				emotion.weaponAttack(player_list.get(target_player).get(rand));
+
 			}
 			
-	}
+			for(int i=0; i<3; i++) {
+				System.out.println("charUI[" + i + "].emotion: " + b1.charUI[i].emotion);
+			    System.out.println("player_list[0][" + i + "]: " + Main.player_list.get(0).get(i));
+				System.out.println("이거 실행됨");
+				b1.charUI[i].setHp();
+				b2.charUI[i].setHp();
+			}
+			
+			
+		}
 
 }

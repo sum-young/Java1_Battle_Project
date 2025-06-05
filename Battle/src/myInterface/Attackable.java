@@ -1,4 +1,6 @@
 package myInterface;
-public interface Attackable {
+import emotion.Emotion;
 
+public interface Attackable {
+	public void attack(Emotion target);
 }

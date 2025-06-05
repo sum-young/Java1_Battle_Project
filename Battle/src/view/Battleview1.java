@@ -73,4 +73,12 @@ public class Battleview1 extends JFrame {
 		}
 
 	}
+	
+	//이걸로 텍스트박스 업데이트 가능하니까 공격/힐/무기공격할 때 String s ="전달할 메시지 적고";
+	//battle1.updateText(s); <- 이거 쓰려면 Battleview1 battle1 = Battleview1.getInstance();이거 앞에 쓰고쓰기
+	//2도 같은 방식으로
+	//근데 이거하려면 플레이어1이 하는건지 2가하는건지 인자로 받아야할듯 하하핳
+	public void updateText(String s) {
+		this.textField.setText(s);
+	}
 }

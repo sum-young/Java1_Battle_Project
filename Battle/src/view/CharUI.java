@@ -80,9 +80,36 @@ public class CharUI {
 	}
 	
 	public void setHp() {
-		System.out.println("이것도 실행됨");
+		if(this.emotion.getCurr_hp() <=0) {
+			this.kill();
+			return;
+		}
+		
 		this.hp_bar.setValue(this.emotion.getCurr_hp());
 		this.hp_bar.repaint();
+		
+		
+	}
+	
+	public void kill() {
+		this.attackButton.setEnabled(false);
+		this.healButton.setEnabled((false));
+		this.wAttackButton.setEnabled(false);
+		hp_bar.setValue(0);
+		hp_bar.setEnabled(false);   
+		this.Img.setIcon(new ImageIcon(Battleview1.class.getResource(this.emotion.getImage2())));
+	}
+	
+	public void disable() {
+		this.attackButton.setEnabled(false);
+		this.healButton.setEnabled((false));
+		this.wAttackButton.setEnabled(false);
+	}
+	
+	public void enable() {
+		this.attackButton.setEnabled(true);
+		this.healButton.setEnabled((true));
+		this.wAttackButton.setEnabled(true);
 	}
 
 }

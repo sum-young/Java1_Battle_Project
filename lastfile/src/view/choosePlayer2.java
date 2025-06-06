@@ -64,6 +64,7 @@ public class choosePlayer2 extends JFrame {
 			battle1.setVisible(true);
 			battle2.setVisible(true);
 			t.setVisible(true);
+			Main.s.showSituation();
 			
 			
 			for(int i=0; i<Main.player_list.get(0).size(); i++){

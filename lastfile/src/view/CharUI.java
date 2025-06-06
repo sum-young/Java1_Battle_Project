@@ -56,6 +56,7 @@ public class CharUI {
 		this.attackButton.setVisible(true);
 		this.healButton.setBounds(57+(this.id*250), 340, 165, 37);
 		this.wAttackButton.setBounds(57+(this.id*250), 390, 165, 37);
+		this.wAttackButton.setEnabled(false);
 		
 		
 		

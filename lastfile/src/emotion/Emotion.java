@@ -45,13 +45,14 @@ public abstract class Emotion implements Attackable, Healable, Buffable, Debuffa
 		int random_num = (int)(Math.random() * 100 % 2); //2의 배수면 힐 성공, 아니면 실패
 		if(random_num == 0) {
 			// 힐 조건 수정해야할거같습니다
-			this.curr_hp += heal_power < max_hp ? heal_power : max_hp;
+			curr_hp = (this.curr_hp + heal_power) < max_hp ? this.curr_hp+=heal_power : max_hp;
 			
 			String s = this.name +"가 힐을 성공했습니다.\n"+"hp가 " + heal_power + "만큼 추가되어 " + this.curr_hp + " 됐습니다!";
 			if (t != null) t.updateText(s);
 		}
 		else {
 			String s = this.name+"가 힐을 실패했습니다ㅠㅠ";
+			t.updateText(s);
 			return;
 		}
 	}

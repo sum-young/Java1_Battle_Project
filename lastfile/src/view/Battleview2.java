@@ -44,17 +44,12 @@ public class Battleview2 extends JFrame {
 	 */
 	public Battleview2() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(1000, 100, 900, 700);
+		setBounds(1000, 100, 900, 500);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
-		textField = new JTextField();
-		textField.setBounds(60, 500, 700, 115);
-		contentPane.add(textField);
-		textField.setColumns(10);
 		
 		for(int i=0; i<3; i++) {
 			emotions[i] = Main.player_list.get(1).get(i);

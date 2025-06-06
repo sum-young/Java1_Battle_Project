@@ -46,4 +46,8 @@ public class text extends JFrame {
 		contentPane.add(textField);
 		textField.setColumns(10);
 	}
+	
+	public void updateText(String s) {
+		this.textField.setText(s);
+	}
 }

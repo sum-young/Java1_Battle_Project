@@ -122,58 +122,65 @@ public class Main {
 			int target_player;
 			int rand = (int)(Math.random()*100)+1;
 			
-			if(player == 0) {
-				target_player = 1;
-				rand %= alive_p2;
-			}
-			else {
-				target_player=0;
-				rand %= alive_p1;
-			}
-		
-			//공격 / 무기 공격 선택지에 따라 다르게 실행되게
-			switch(select){
-			case 1:
-				emotion.attack(player_list.get(target_player).get(rand));
-				break;
-			case 2:
-				emotion.weaponAttack(player_list.get(target_player).get(rand));
+			
+			if(alive_p1!=0 && alive_p2 !=0) {
+				if(player == 0) {
+					target_player = 1;
+					rand %= alive_p2;
+				}
+				else {
+					target_player=0;
+					rand %= alive_p1;
+				}
+			
+				//공격 / 무기 공격 선택지에 따라 다르게 실행되게
+				switch(select){
+				case 1:
+					emotion.attack(player_list.get(target_player).get(rand));
+					break;
+				case 2:
+					emotion.weaponAttack(player_list.get(target_player).get(rand));
 
+				}
 			}
 			
+			
 			Emotion[] winner = new Emotion[3];
-			for(int i=0; i<3; i++) {
-				if(alive_p1 <= 0) {
-					for(int j=0; j<3; j++) {
-						winner[j] = player_list2.get(1).get(j);
-						System.out.println("");
-					}
-					new winner(winner[0],winner[1],winner[2]);
+			
+			if(alive_p1 <= 0) {
+				for(int j=0; j<3; j++) {
+					winner[j] = player_list2.get(1).get(j);
+					System.out.println("");
 				}
-				else if(alive_p2 <= 0) {
-					for(int j=0; j<3; j++) {
-						winner[j] = player_list2.get(0).get(j);
-					}
-					new winner(winner[0],winner[1],winner[2]);
+				new winner(winner[0],winner[1],winner[2]).setVisible(true);
+			}
+			else if(alive_p2 <= 0) {
+				for(int j=0; j<3; j++) {
+					winner[j] = player_list2.get(0).get(j);
 				}
+				new winner(winner[0],winner[1],winner[2]).setVisible(true);
+			}
+			
+			for(int i=0;i<3;i++) {
 				b1.charUI[i].setHp();
 				b2.charUI[i].setHp();
 			}
 			
 			
+			
+			
 		}
 		
 		public static int checkalive(int n) {
-			int cnt =0;
-			for(int i=0; i<player_list.size(); i++) {
-				if(player_list.get(n).get(i).state) {
+			int cnt = 0;
+			Vector<Emotion> team = player_list.get(n);
+			for (int i = team.size() - 1; i >= 0; i--) {
+				if (team.get(i).state) {
 					cnt++;
-				}
-				else {
-					player_list.get(n).remove(i);
+				} else {
+					team.remove(i);
 				}
 			}
-			
 			return cnt;
 		}
 

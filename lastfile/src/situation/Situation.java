@@ -15,16 +15,21 @@ public class Situation {
 	text t = text.getInstance();
 
 	public void give_buff() {
-		applyEffect(buff_target, true);  // true는 buff
+		System.out.println("실행");
+		for(Emotion e : buff_target) {
+			e.buff();
+		}
 	}
 
 	public void give_debuff() {
-		applyEffect(debuff_target, false); // false는 debuff
+		System.out.println("실행");
+		for(Emotion e : debuff_target) {
+			e.debuff();
+		}
 	}
 
 
 	private void applyEffect(Vector<Emotion> targets, boolean isBuff) {
-		// 버프 디버프 로직이 겹쳐서 boolean값에 따라 버프 디버프 실행하는 걸로 모듈화
 
 		if (targets.isEmpty()) return;
 
@@ -32,7 +37,6 @@ public class Situation {
 			for (int i = 0; i < Main.player_list.size(); i++) {
 				for (Emotion p : Main.getPlayers(i)) {
 					if (p.getClass().equals(target.getClass())) {
-						// ==가 아닌 equals()로 변경 ... 어떻게든 배운거 우겨넣기?ㅋㅋㅋㅋ
 						if (isBuff) {
 							p.buff();
 						} else {

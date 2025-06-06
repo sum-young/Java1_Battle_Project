@@ -8,6 +8,7 @@ import situation.*;
 import view.Battleview1;
 import view.Battleview2;
 import view.choosePlayer1;
+import view.winner;
 
 
 public class Main {	
@@ -130,12 +131,19 @@ public class Main {
 
 			}
 			
+			Emotion[] winner = new Emotion[3];
 			for(int i=0; i<3; i++) {
 				if(alive_p1 <= 0) {
-					Emotion[] winner = new Emotion[3];
-					Emotion winner1 = player_list.get(1).get(0);
+					for(int j=0; j<3; j++) {
+						winner[j] = player_list.get(1).get(j);
+					}
+					new winner(winner[0],winner[1],winner[2]);
 				}
 				else {
+					for(int j=0; j<3; j++) {
+						winner[j] = player_list.get(0).get(j);
+					}
+					new winner(winner[0],winner[1],winner[2]);
 					
 				}
 				b1.charUI[i].setHp();

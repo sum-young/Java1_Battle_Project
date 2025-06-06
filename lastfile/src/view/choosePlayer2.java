@@ -60,9 +60,10 @@ public class choosePlayer2 extends JFrame {
 		if(cnt2==3) {
 			Battleview1 battle1 = Battleview1.getInstance();
 			Battleview2 battle2 = Battleview2.getInstance();
+			text t = text.getInstance();
 			battle1.setVisible(true);
 			battle2.setVisible(true);
-			new text().setVisible(true);
+			t.setVisible(true);
 			
 			
 			for(int i=0; i<Main.player_list.get(0).size(); i++){

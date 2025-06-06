@@ -87,13 +87,15 @@ public class CharUI {
 	
 	//setHP 그 hp_bar 업데이트되는 메소드 여기에 둠
 	public void setHp() {
+		text t = text.getInstance();
 		if(this.emotion.getCurr_hp() <=0) {
 			this.kill();//죽이기 메소드
 			return;
 		}
 		
-		if (this.emotion.getMax_hp() / this.emotion.getCurr_hp() <= 30) {
+		if ( (double)this.emotion.getCurr_hp()/(double)this.emotion.getMax_hp() <= 0.3) {
 			this.wAttackButton.setEnabled(true);
+			t.updateText(this.emotion.name+"의 무기 공격 버튼이 활성화 되었습니다. ");
 		}
 		
 		this.hp_bar.setValue(this.emotion.getCurr_hp());

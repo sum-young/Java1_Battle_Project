@@ -8,6 +8,15 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JTextField;
 
 public class text extends JFrame {
+	
+	private static text instance;
+
+	public static text getInstance() {
+		if (instance == null) {
+			instance = new text();
+		}
+		return instance;
+	}
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;

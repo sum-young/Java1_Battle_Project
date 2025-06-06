@@ -18,7 +18,7 @@ public class Battleview1 extends JFrame {
 		}
 		return instance;
 	}
-
+	
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	public CharUI[] charUI = new CharUI[3];

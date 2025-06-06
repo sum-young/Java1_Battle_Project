@@ -131,9 +131,13 @@ public class Main {
 			}
 			
 			for(int i=0; i<3; i++) {
-				System.out.println("charUI[" + i + "].emotion: " + b1.charUI[i].emotion);
-			    System.out.println("player_list[0][" + i + "]: " + Main.player_list.get(0).get(i));
-				System.out.println("이거 실행됨");
+				if(alive_p1 <= 0) {
+					Emotion[] winner = new Emotion[3];
+					Emotion winner1 = player_list.get(1).get(0);
+				}
+				else {
+					
+				}
 				b1.charUI[i].setHp();
 				b2.charUI[i].setHp();
 			}

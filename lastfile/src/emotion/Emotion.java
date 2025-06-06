@@ -53,11 +53,9 @@ public abstract class Emotion implements Attackable, Healable, Buffable, Debuffa
     
     public void debuff() {
     	this.attack_power *= 0.97;
-    	System.out.println(this.name + "가 디버프를 받습니다.");
     }
     public void buff() {
     	this.attack_power *= 1.05;
-    	System.out.println(this.name + "가 버프를 받습니다.");
     }
 
 	

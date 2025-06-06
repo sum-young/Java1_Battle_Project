@@ -62,8 +62,6 @@ public class Main {
 			break;
 		}
 
-		// 상황 관련 상태 안내문 (나중에 텍스트창에 띄워도 나쁘지 않을듯)
-//		s.showSituation();
 		s.give_buff();
 		s.give_debuff();
 

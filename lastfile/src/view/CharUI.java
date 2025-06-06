@@ -13,6 +13,10 @@ import emotion.Emotion;
 
 public class CharUI {
 	
+	//요소 버튼 3개 + 이미지 + hp_bar 묶어놓음
+	//각각 이름 확인하고 사용하면 될 듯
+	//사용방법은 각 배틀뷰1/2에 있는 필드인 CharUI[] 이 배열로
+	//charUI[인덱스].해서  CharUI안에 있는 메소드 쓰게
 	public int id;
 	public JProgressBar hp_bar = new JProgressBar();
 	public JButton attackButton = new JButton("공격하기");
@@ -35,6 +39,7 @@ public class CharUI {
 		this.setProgressBar();
 	}
 	
+	//화면에 띄우는 용도 (기본설정이니까 안건드는거 추천..ㅎㅎ)
 	public void setProgressBar() {
 		this.hp_bar.setBackground(Color.LIGHT_GRAY);
 		this.hp_bar.setForeground(Color.RED);
@@ -44,7 +49,7 @@ public class CharUI {
 		this.hp_bar.setStringPainted(true);
 		
 	}
-	
+	//"버튼" 화면에 띄우기 + 클릭 이벤트 연결 (기본설정이니까 안건드는거 추천..ㅎㅎ)
 	public void setButton() {
 		
 		this.attackButton.setBounds(57+(this.id*250), 290, 165, 37);
@@ -72,6 +77,7 @@ public class CharUI {
 		});
 	}
 	
+	//"이미지" 화면에 띄우는 용도 (기본설정이니까 안건드는거 추천..ㅎㅎ)
 	public void setImg(String imageFile) {
 		int x = 65;
 		this.Img.setIcon(new ImageIcon(Battleview1.class.getResource(this.emotion.getImage1())));
@@ -79,10 +85,15 @@ public class CharUI {
 		this.Img.setVisible(true);
 	}
 	
+	//setHP 그 hp_bar 업데이트되는 메소드 여기에 둠
 	public void setHp() {
 		if(this.emotion.getCurr_hp() <=0) {
-			this.kill();
+			this.kill();//죽이기 메소드
 			return;
+		}
+		
+		if (this.emotion.getMax_hp() / this.emotion.getCurr_hp() <= 30) {
+			this.wAttackButton.setEnabled(true);
 		}
 		
 		this.hp_bar.setValue(this.emotion.getCurr_hp());
@@ -91,6 +102,7 @@ public class CharUI {
 		
 	}
 	
+	//죽였을 때, 버튼 disable + 그림 바뀌기 해놓음
 	public void kill() {
 		this.attackButton.setEnabled(false);
 		this.healButton.setEnabled((false));
@@ -100,6 +112,8 @@ public class CharUI {
 		this.Img.setIcon(new ImageIcon(Battleview1.class.getResource(this.emotion.getImage2())));
 	}
 	
+	//후에 턴 바뀌는거 disable했다 enable했다 막 이러면
+	//이렇게 쓰일 거 같아서 일단 만들어 놓음
 	public void disable() {
 		this.attackButton.setEnabled(false);
 		this.healButton.setEnabled((false));

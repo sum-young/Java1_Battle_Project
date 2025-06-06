@@ -21,8 +21,8 @@ public class 소심이 extends Emotion {
 	}
 
 	public void weaponAttack(Emotion target){
-		super.attack(target);
-		System.out.println(">소심이가 걱정 폭탄을 투하했습니다! 콰과ㅘ앙카ㅏㅏㅇ");
+		super.weaponAttack(target);
+		t.updateText(">소심이가 걱정 폭탄을 투하했습니다! 콰과ㅘ앙카ㅏㅏㅇ");
     }
 
 }

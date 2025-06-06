@@ -22,6 +22,7 @@ public class CharUI {
 	public JButton attackButton = new JButton("공격하기");
 	public JButton healButton = new JButton("힐하기");
 	public JButton wAttackButton = new JButton("무기로 공격하기");
+	public boolean wAttackState = false;
 	public JLabel Img = new JLabel();
 	public Emotion emotion;
 	public int player;
@@ -94,10 +95,15 @@ public class CharUI {
 			return;
 		}
 		
-		if ( (double)this.emotion.getCurr_hp()/(double)this.emotion.getMax_hp() <= 0.3) {
-			this.wAttackButton.setEnabled(true);
-			t.updateText(this.emotion.name+"의 무기 공격 버튼이 활성화 되었습니다. ");
+		if(!this.wAttackState) {
+			if ( (double)this.emotion.getCurr_hp()/(double)this.emotion.getMax_hp() <= 0.3) {
+				this.wAttackButton.setEnabled(true);
+				t.updateText(this.emotion.name+"의 무기 공격 버튼이 활성화 되었습니다. ");
+				this.wAttackState = true;
+			}
 		}
+		
+		
 		
 		this.hp_bar.setValue(this.emotion.getCurr_hp());
 		this.hp_bar.repaint();

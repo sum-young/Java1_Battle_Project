@@ -22,7 +22,7 @@ public class 슬픔이 extends Emotion {
 
 	public void weaponAttack(Emotion target){
 		super.attack(target);
-		System.out.println(">슬픔이가 눈물을 흘립니다ㅠㅠㅠ 너무 슬펴져서 힘이 깎입니다:(");
+		t.updateText(">슬픔이가 눈물을 흘립니다ㅠㅠㅠ 너무 슬펴져서 힘이 깎입니다:(");
     }
 
 }

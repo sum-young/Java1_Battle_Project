@@ -8,6 +8,7 @@ import situation.*;
 import view.Battleview1;
 import view.Battleview2;
 import view.choosePlayer1;
+import view.text;
 import view.winner;
 import java.time.LocalDateTime;
 
@@ -62,7 +63,7 @@ public class Main {
 		}
 
 		// 상황 관련 상태 안내문 (나중에 텍스트창에 띄워도 나쁘지 않을듯)
-		s.showSituation();
+//		s.showSituation();
 		s.give_buff();
 		s.give_debuff();
 
@@ -112,6 +113,7 @@ public class Main {
 
 		Battleview1 b1 = Battleview1.getInstance();
 		Battleview2 b2 = Battleview2.getInstance();
+		text t = text.getInstance();
 
 		alive_p1 = checkalive(0);
 		alive_p2 = checkalive(1);
@@ -155,9 +157,11 @@ public class Main {
 			Emotion e2 = player_list2.get(1).get(1);
 			Emotion e3 = player_list2.get(1).get(2);
 
-			System.out.println("실행됨");
 			win.setVisible(true);
 			win.setwinner(e1, e2, e3);
+			b1.dispose();
+			b2.dispose();
+			t.dispose();
 		} else if (alive_p2 <= 0) {
 			winner win = winner.getInstance();
 			Emotion e1 = player_list2.get(0).get(0);
@@ -167,6 +171,9 @@ public class Main {
 			System.out.println("실행됨");
 			win.setVisible(true);
 			win.setwinner(e1, e2, e3);
+			b1.dispose();
+			b2.dispose();
+			t.dispose();
 		}
 
 	}

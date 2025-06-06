@@ -21,8 +21,8 @@ public class 기쁨이 extends Emotion {
 	}
     
 	public void weaponAttack(Emotion target){
-		super.attack(target);
-		System.out.println(">기쁨이가 비눗방울을 날립니다! 보글보글보글...");
+		super.weaponAttack(target);
+		t.updateText(">기쁨이가 비눗방울을 날립니다! 보글보글보글...");
     }
 
 }

@@ -2,6 +2,7 @@ package emotion;
 
 import myInterface.*;
 import weapon.Weapon;
+import view.*;
 
 public abstract class Emotion implements Attackable, Healable, Buffable, Debuffable {
 	public String name;
@@ -13,6 +14,7 @@ public abstract class Emotion implements Attackable, Healable, Buffable, Debuffa
 	protected String image2;
 	protected Weapon weapon;
 	public boolean state = true;
+	text t = text.getInstance();
 
     public void show_view(){
     	System.out.println("====================================");
@@ -27,14 +29,14 @@ public abstract class Emotion implements Attackable, Healable, Buffable, Debuffa
 //			return;
 //		}
 		String s = this.name + "가 " + target.name + "를 공격합니다!"; 
-		if (text != null) text.updateText(s);
-		text.updateText(s);
+		if (t != null) t.updateText(s);
+		t.updateText(s);
     }
     
     public void weaponAttack(Emotion target){
 		target.setCurr_hp(target.getCurr_hp() - this.weapon.getPower());
 		String s = this.name + "가" + this.weapon + "으로" +target.name+"를 공격합니다.";
-		if (text != null) text.updateText(s);
+		if (t != null) t.updateText(s);
 		// NullPointerException 때문에 if(text != null) 추가함
 
     }
@@ -46,7 +48,7 @@ public abstract class Emotion implements Attackable, Healable, Buffable, Debuffa
 			this.curr_hp += heal_power < max_hp ? heal_power : max_hp;
 			
 			String s = this.name +"가 힐을 성공했습니다.\n"+"hp가 " + heal_power + "만큼 추가되어 " + this.curr_hp + " 됐습니다!";
-			if (text != null) text.updateText(s);
+			if (t != null) t.updateText(s);
 		}
 		else {
 			String s = this.name+"가 힐을 실패했습니다ㅠㅠ";

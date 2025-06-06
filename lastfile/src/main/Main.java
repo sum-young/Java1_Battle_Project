@@ -14,6 +14,7 @@ import view.winner;
 public class Main {	
 	//플레이어 벡터 Main 클래스의 전역변수로 선언. default라 다른 패키지에서 못쓰니까 get, set 메소드 만듦
 	public static Vector<Vector<Emotion>> player_list = new Vector<>();
+	public static Vector<Vector<Emotion>> player_list2 = new Vector<>();
 	
 	//살아있는 팀별 수
 	static public int alive_p1 =3;
@@ -21,6 +22,7 @@ public class Main {
 	static {
 		for (int i = 0; i < 2; i++) {
 		    player_list.add(new Vector<>()); // 2개의 빈 벡터 추가
+		    player_list2.add(new Vector<>());
 		}
 	}
 	//플레이어 벡터 각각 만들면 코드 너무 겹쳐서 그냥 2차원 벡터로함.
@@ -84,18 +86,23 @@ public class Main {
 			switch(n) {
 			case 1:
 				player_list.get(player).add(new 기쁨이());
+				player_list2.get(player).add(new 기쁨이());
 				return;
 			case 2:
 				player_list.get(player).add(new 슬픔이());
+				player_list2.get(player).add(new 슬픔이());
 				return;
 			case 3:
 				player_list.get(player).add(new 버럭이());
+				player_list2.get(player).add(new 버럭이());
 				return;
 			case 4:
 				player_list.get(player).add(new 까칠이());
+				player_list2.get(player).add(new 까칠이());
 				return;
 			case 5:
 				player_list.get(player).add(new 소심이());
+				player_list2.get(player).add(new 소심이());
 				return;
 			}
 			
@@ -108,9 +115,12 @@ public class Main {
 			Battleview1 b1 = Battleview1.getInstance();
 			Battleview2 b2 = Battleview2.getInstance();
 			
+			alive_p1 = checkalive(0);
+			alive_p2 = checkalive(1);
+			
 			//랜덤하게 상대 타겟 결정
 			int target_player;
-			int rand = (int)(Math.random()*100);
+			int rand = (int)(Math.random()*100)+1;
 			
 			if(player == 0) {
 				target_player = 1;
@@ -135,22 +145,36 @@ public class Main {
 			for(int i=0; i<3; i++) {
 				if(alive_p1 <= 0) {
 					for(int j=0; j<3; j++) {
-						winner[j] = player_list.get(1).get(j);
+						winner[j] = player_list2.get(1).get(j);
+						System.out.println("");
 					}
 					new winner(winner[0],winner[1],winner[2]);
 				}
-				else {
+				else if(alive_p2 <= 0) {
 					for(int j=0; j<3; j++) {
-						winner[j] = player_list.get(0).get(j);
+						winner[j] = player_list2.get(0).get(j);
 					}
 					new winner(winner[0],winner[1],winner[2]);
-					
 				}
 				b1.charUI[i].setHp();
 				b2.charUI[i].setHp();
 			}
 			
 			
+		}
+		
+		public static int checkalive(int n) {
+			int cnt =0;
+			for(int i=0; i<player_list.size(); i++) {
+				if(player_list.get(n).get(i).state) {
+					cnt++;
+				}
+				else {
+					player_list.get(n).remove(i);
+				}
+			}
+			
+			return cnt;
 		}
 
 }

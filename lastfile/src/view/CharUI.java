@@ -112,6 +112,7 @@ public class CharUI {
 		hp_bar.setValue(0);
 		hp_bar.setEnabled(false);   
 		this.Img.setIcon(new ImageIcon(Battleview1.class.getResource(this.emotion.getImage2())));
+		this.emotion.state = false;
 	}
 	
 	//후에 턴 바뀌는거 disable했다 enable했다 막 이러면

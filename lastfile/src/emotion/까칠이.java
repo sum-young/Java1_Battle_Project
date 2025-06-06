@@ -21,8 +21,8 @@ public class 까칠이 extends Emotion {
 	}
 
 	public void weaponAttack(Emotion target){
-		super.attack(target);
-		System.out.println(">까칠이가 눈빛레이저를 발사했습니다! 위이이잉");
+		super.weaponAttack(target);
+		t.updateText(">까칠이가 눈빛레이저를 발사했습니다! 위이이잉");
     }
 
 }

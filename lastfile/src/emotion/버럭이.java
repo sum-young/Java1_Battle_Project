@@ -21,8 +21,8 @@ public class 버럭이 extends Emotion {
 	}
 
 	public void weaponAttack(Emotion target){
-		super.attack(target);
-		System.out.println(">버럭이가 망치를 휘두룹니다! 쾅쾅!!");
+		super.weaponAttack(target);
+		t.updateText(">버럭이가 망치를 휘두룹니다! 쾅쾅!!");
     }
 
 }

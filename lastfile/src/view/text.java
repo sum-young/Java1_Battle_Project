@@ -4,6 +4,8 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JTextField;
 
@@ -20,7 +22,7 @@ public class text extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField textField;
+	private JTextArea textArea;
 
 	/**
 	 * Launch the application.
@@ -50,13 +52,16 @@ public class text extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		textField = new JTextField();
-		textField.setBounds(12, 75, 666, 141);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(12, 75, 666, 141);
+		contentPane.add(scrollPane);
+		
+		textArea = new JTextArea();
+		contentPane.add(textArea);
+		scrollPane.setViewportView(textArea);
 	}
 	
 	public void updateText(String s) {
-		this.textField.setText(s);
+		this.textArea.append(s+"\n");
 	}
 }

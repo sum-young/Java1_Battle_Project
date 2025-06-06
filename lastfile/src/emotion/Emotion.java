@@ -14,7 +14,7 @@ public abstract class Emotion implements Attackable, Healable, Buffable, Debuffa
 	protected String image2;
 	protected Weapon weapon;
 	public boolean state = true;
-	text t = text.getInstance();
+	protected text t = text.getInstance();
 
     public void show_view(){
     	System.out.println("====================================");
@@ -24,27 +24,21 @@ public abstract class Emotion implements Attackable, Healable, Buffable, Debuffa
     
     public void attack(Emotion target) {
     	target.setCurr_hp(target.getCurr_hp() - this.attack_power);
-//		if ((double)this.curr_hp / this.max_hp <= 0.3) {
-//			this.weaponAttack(target);
-//			return;
-//		}
 		String s = this.name + "가 " + target.name + "를 공격합니다!"; 
-		if (t != null) t.updateText(s);
 		t.updateText(s);
     }
     
     public void weaponAttack(Emotion target){
+    	System.out.println("이거 실행됨");
 		target.setCurr_hp(target.getCurr_hp() - this.weapon.getPower());
-		String s = this.name + "가" + this.weapon + "으로" +target.name+"를 공격합니다.";
-		if (t != null) t.updateText(s);
-		// NullPointerException 때문에 if(text != null) 추가함
+		String s = this.name + "가 " + this.weapon.name + "으로 " +target.name+"를 공격합니다.";
+		t.updateText(s);
 
     }
     
     public void heal() {
 		int random_num = (int)(Math.random() * 100 % 2); //2의 배수면 힐 성공, 아니면 실패
 		if(random_num == 0) {
-			// 힐 조건 수정해야할거같습니다
 			curr_hp = (this.curr_hp + heal_power) < max_hp ? this.curr_hp+=heal_power : max_hp;
 			
 			String s = this.name +"가 힐을 성공했습니다.\n"+"hp가 " + heal_power + "만큼 추가되어 " + this.curr_hp + " 됐습니다!";
